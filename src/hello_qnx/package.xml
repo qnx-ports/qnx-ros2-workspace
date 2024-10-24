@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>hello_qnx</name>
+  <version>0.0.1</version>
+  <description>Hello QNX example</description>
+
+  <maintainer email="chachoi@blackberry.com">James Choi</maintainer>
+
+  <license>Apache License 2.0</license>
+
+  <author>James Choi</author>
+  <author email="chachoi@blackberry.com">James Choi</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <build_depend>rclcpp</build_depend>
+
+  <exec_depend>rclcpp</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
