@@ -30,19 +30,19 @@ for arch in aarch64 x86_64; do
     echo "CPUVARDIR set to $CPUVARDIR"
 
     # Set according to where you installed host installation on target
-    ROS2_HOST_INSTALLATION_PATH=$QNX_TARGET/$CPUVARDIR/opt/ros/humble
+    ROS2_HOST_INSTALLATION_PATH=$QNX_TARGET/$CPUVARDIR/opt/ros/jazzy
     CMAKE_MODULE_PATH="$PWD/platform/modules"
 
-    if [ -f "$QNX_TARGET/$CPUVARDIR/opt/ros/humble/local_setup.bash" ]; then
-	    ROS2_HOST_INSTALLATION_PATH=$QNX_TARGET/$CPUVARDIR/opt/ros/humble
+    if [ -f "$QNX_TARGET/$CPUVARDIR/opt/ros/jazzy/local_setup.bash" ]; then
+	    ROS2_HOST_INSTALLATION_PATH=$QNX_TARGET/$CPUVARDIR/opt/ros/jazzy
 	    CMAKE_MODULE_PATH="$PWD/platform/modules"
 	    NUMPY_HEADERS=$QNX_TARGET/$CPUVARDIR/usr/lib/python3.11/site-packages/numpy/core/include
       echo "Found ROS2 Installation in $ROS2_HOST_INSTALLATION_PATH"
     else
 	    echo "ROS2 not found in $ROS2_HOST_INSTALLATION_PATH"
-	    echo "Searching in $HOME/ros2_humble/install/$CPUVARDIR"
-	    if [ -f "$HOME/ros2_humble/install/$CPUVARDIR/local_setup.bash" ]; then
-	      ROS2_HOST_INSTALLATION_PATH=$HOME/ros2_humble/install/$CPUVARDIR
+	    echo "Searching in $HOME/ros2_jazzy/install/$CPUVARDIR"
+	    if [ -f "$HOME/ros2_jazzy/install/$CPUVARDIR/local_setup.bash" ]; then
+	      ROS2_HOST_INSTALLATION_PATH=$HOME/ros2_jazzy/install/$CPUVARDIR
 	      CMAKE_MODULE_PATH=" "
 	      NUMPY_HEADERS=${ROS2_HOST_INSTALLATION_PATH}/usr/lib/python3.11/site-packages/numpy/core/include
 	      echo "ROS2 found in $ROS2_HOST_INSTALLATION_PATH"
@@ -76,7 +76,7 @@ for arch in aarch64 x86_64; do
             -DCMAKE_BUILD_TYPE="Release" \
             -DCMAKE_MODULE_PATH=$CMAKE_MODULE_PATH \
             -DROS2_HOST_INSTALLATION_PATH=$ROS2_HOST_INSTALLATION_PATH \
-	    -DROS_EXTERNAL_DEPS_INSTALL=${QNX_TARGET}/${CPUVARDIR}/opt/ros/humble \
+	    -DROS_EXTERNAL_DEPS_INSTALL=${QNX_TARGET}/${CPUVARDIR}/opt/ros/jazzy \
             -Wno-dev --no-warn-unused-cli
 
     rc=$?

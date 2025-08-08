@@ -38,7 +38,7 @@ set(EXTRA_CMAKE_CXX_FLAGS "${EXTRA_CMAKE_C_FLAGS} ${EXTRA_CMAKE_CXX_FLAGS} -stdl
 
 
 message(STATUS "using -stdlib=libc++")
-set(EXTRA_CMAKE_LINKER_FLAGS "-Wl,--build-id=md5,--as-needed -L${ROS_EXTERNAL_DEPS_INSTALL}/lib")
+set(EXTRA_CMAKE_LINKER_FLAGS "-Wl,--build-id=md5,--as-needed -L${ROS_EXTERNAL_DEPS_INSTALL}/lib -lyaml -lrcl_logging_spdlog -lament_index_cpp")
 
 # needs a cpu + variant
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Vgcc_nto${CPUVAR} ${EXTRA_CMAKE_C_FLAGS}" CACHE STRING "c_flags")
@@ -68,7 +68,12 @@ set(THREADS_PTHREAD_ARG "0" CACHE STRING "Result from TRY_RUN" FORCE)
 # extension files to be found.
 set(PYTHON_SOABI cpython-311)
 # Find host python then override the variables needed for cross-compiling with QNX cross compiled files.
-find_package(PythonInterp 3.11 REQUIRED)
+# Use different find_package methods based on CMake version for compatibility
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.12")
+  find_package(Python3 3.11 COMPONENTS Interpreter REQUIRED)
+else()
+  find_package(PythonInterp 3.11 REQUIRED)
+endif()
 set(PYTHON_INCLUDE_DIR ${QNX_TARGET}/usr/include/${CPUVARDIR}/python3.11;${QNX_TARGET}/${CPUVARDIR}/usr/include/python3.11;${QNX_TARGET}/usr/include/python3.11;${QNX_TARGET}/${CPUVARDIR}/usr/lib/python3.11/site-packages/numpy/core/include;${ROS_EXTERNAL_DEPS_INSTALL}/${CPUVARDIR}/usr/lib/python3.11/site-packages/numpy/core/include)
 set(PYTHON_INCLUDE_DIRS ${PYTHON_INCLUDE_DIR})
 set(PYTHON_LIBRARY ${QNX_TARGET}/${CPUVARDIR}/usr/lib/libpython3.11.so)
