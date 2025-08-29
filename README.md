@@ -15,6 +15,11 @@ git clone https://github.com/qnx-ports/qnx-ros2-workspace.git && cd qnx-ros2-wor
 
 3. Run the build command:
 ```bash
+# Specify the architecture to build
+export CPU=aarch64
+
+# Specify your ros2 host installation path
+export ROS2_HOST_INSTALLATION_PATH=$QNX_TARGET/aarch64le/opt/ros/jazzy
 ./build.sh
 ```
 
