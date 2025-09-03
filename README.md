@@ -1,6 +1,6 @@
-Setting up a workspace for ROS2 Humble for QNX:
+Setting up a workspace for ROS2 Jazzy for QNX:
 
-Pre-requisite: build and install QNX ROS2 Humble from [source](https://github.com/qnx-ports/build-files/blob/main/ports/ros2-jazzy/README.md).                                     
+Pre-requisite: build and install QNX ROS2 Jazzy from [source](https://github.com/qnx-ports/build-files/blob/main/ports/ros2-jazzy/README.md).                                     
 
 Preferable host OS: Ubuntu 20.04
 
@@ -52,7 +52,7 @@ export TMPDIR=/data
 python3 -m ensurepip
 # Add pip to PATH
 export PATH=$PATH:/data/home/qnxuser/.local/bin
-pip3 install packaging pyyaml lark -t /data/home/qnxuser/.local/lib/python3.11/site-packages/
+pip3 install argcomplete packaging pyyaml lark -t /data/home/qnxuser/.local/lib/python3.11/site-packages/
 export PYTHONPATH=$PYTHONPATH:/data/home/qnxuser/opt/ros/jazzy/usr/lib/python3.11/site-packages/:/data/home/qnxuser/.local/lib/python3.11/site-packages/
 export COLCON_PYTHON_EXECUTABLE=/system/bin/python3
 ```
