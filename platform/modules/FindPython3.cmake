@@ -31,7 +31,7 @@ set(Python3_INCLUDE_DIRS ${Python3_INCLUDE_DIR})
 set(Python3_LIBRARIES ${Python3_LIBRARY})
 
 # Set NumPy paths for QNX
-set(NumPy_INCLUDE_DIR "${QNX_TARGET}/${CPUVARDIR}/opt/ros/jazzy/usr/lib/python3.11/site-packages/numpy/core/include")
+set(NumPy_INCLUDE_DIR "${ROS2_HOST_INSTALLATION_PATH}/usr/lib/python3.11/site-packages/numpy/core/include")
 set(NumPy_FOUND TRUE)
 
 # Create NumPy::NumPy target
