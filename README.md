@@ -1,6 +1,6 @@
 Setting up a workspace for ROS2 Humble for QNX:
 
-Pre-requisite: build and install QNX ROS2 Humble from [source](https://github.com/qnx-ports/build-files/blob/main/ports/ros2/README.md).                                     
+Pre-requisite: build and install QNX ROS2 Humble from [source](https://github.com/qnx-ports/build-files/blob/main/ports/ros2/ros2-humble/README.md).                                     
 
 Preferable host OS: Ubuntu 20.04
 
