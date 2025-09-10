@@ -33,7 +33,7 @@ set(CMAKE_SYSTEM_PROCESSOR "${CPUVAR}")
 
 set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES} ${QNX_TARGET}/usr/include)
 
-set(EXTRA_CMAKE_C_FLAGS "${EXTRA_CMAKE_C_FLAGS} -Wl,-rpath-link,${ROS_EXTERNAL_DEPS_INSTALL}/${CPUVARDIR}/usr/lib:${CMAKE_INSTALL_PREFIX}/lib -DTIXML_USE_STL -DOPENCV_NOSTL_TRANSITIONAL -D_QNX_SOURCE -D__USESRCVERSION -Wno-deprecated-declarations -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -I${ROS_EXTERNAL_DEPS_INSTALL}/${CPUVARDIR}/include/foonathan/memory/detail ")
+set(EXTRA_CMAKE_C_FLAGS "${EXTRA_CMAKE_C_FLAGS} -Wl,-rpath-link,${ROS_EXTERNAL_DEPS_INSTALL}/lib:${CMAKE_INSTALL_PREFIX}/lib -DTIXML_USE_STL -DOPENCV_NOSTL_TRANSITIONAL -D_QNX_SOURCE -D__USESRCVERSION -Wno-deprecated-declarations -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -I${ROS_EXTERNAL_DEPS_INSTALL}/${CPUVARDIR}/include/foonathan/memory/detail ")
 set(EXTRA_CMAKE_CXX_FLAGS "${EXTRA_CMAKE_C_FLAGS} ${EXTRA_CMAKE_CXX_FLAGS} -stdlib=libc++ -std=c++17")
 
 
