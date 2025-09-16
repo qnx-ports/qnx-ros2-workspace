@@ -33,7 +33,7 @@ set(CMAKE_SYSTEM_PROCESSOR "${CPUVAR}")
 
 set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES} ${QNX_TARGET}/usr/include)
 
-set(EXTRA_CMAKE_C_FLAGS "${EXTRA_CMAKE_C_FLAGS} -Wl,-rpath-link,${ROS_EXTERNAL_DEPS_INSTALL}/lib:${CMAKE_INSTALL_PREFIX}/lib -DTIXML_USE_STL -DOPENCV_NOSTL_TRANSITIONAL -D_QNX_SOURCE -D__USESRCVERSION -Wno-deprecated-declarations -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -I${ROS_EXTERNAL_DEPS_INSTALL}/${CPUVARDIR}/include/foonathan/memory/detail ")
+set(EXTRA_CMAKE_C_FLAGS "${EXTRA_CMAKE_C_FLAGS} -Wl,-rpath-link,${ROS_EXTERNAL_DEPS_INSTALL}/lib:${CMAKE_INSTALL_PREFIX}/lib -DTIXML_USE_STL -DOPENCV_NOSTL_TRANSITIONAL -D_QNX_SOURCE -D__USESRCVERSION -Wno-deprecated-declarations -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -I${ROS_EXTERNAL_DEPS_INSTALL}/${CPUVARDIR}/include/foonathan/memory/detail -I${ROS_EXTERNAL_DEPS_INSTALL}/include/eigen3")
 set(EXTRA_CMAKE_CXX_FLAGS "${EXTRA_CMAKE_C_FLAGS} ${EXTRA_CMAKE_CXX_FLAGS} -stdlib=libc++ -std=c++17")
 
 
@@ -121,8 +121,18 @@ endfunction()
 # Workaround to fix Eigen3Config.cmake setting eigen3 include dirs to
 # ${QNX_STAGE}/${CPUVARDIR}/usr/include/ instead of ${QNX_STAGE}/usr/include/
 # without having to modify any of the files outside the toolchain file
-set(Eigen3_INCLUDE_DIRS ${ROS_EXTERNAL_DEPS_INSTALL}/usr/include/eigen3)
+set(Eigen3_INCLUDE_DIRS 
+  ${ROS_EXTERNAL_DEPS_INSTALL}/include
+  ${ROS_EXTERNAL_DEPS_INSTALL}/include/eigen3
+)
 set(EIGEN3_FOUND TRUE)
+
+if(NOT TARGET Eigen3::Eigen)
+  add_library(Eigen3::Eigen INTERFACE IMPORTED)
+  set_target_properties(Eigen3::Eigen PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${Eigen3_INCLUDE_DIRS}"
+  )
+endif()
 #######################################################################
 
 #######################################################################
